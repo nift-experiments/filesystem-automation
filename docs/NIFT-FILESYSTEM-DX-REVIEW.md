@@ -1,6 +1,6 @@
 # Filesystem automation: practitioner assessment
 
-Qualitative implementation assessment, not benchmark evidence. Measurements and profiles will be linked after the campaign audit. Nift core remains untouched.
+Qualitative implementation assessment, not benchmark evidence. Accepted measurements are in RESULTS.md; separate syscall, CPU, allocation and memory controls are in DIAGNOSTICS.md. Nift core remains untouched.
 
 ## Present-day choices
 
@@ -12,7 +12,7 @@ For an existing JS project I would choose Node, or Bun where that project alread
 
 For a standalone large-volume filesystem utility I would choose Go: a compiled binary, typed directory entries, explicit returned errors, native SHA-256, and deployment without a separate script interpreter are direct benefits. I would accept the extra code for a maintained utility; it is not automatically the best choice for a one-off tiny script. Linux results do not certify Windows path, symlink or rename semantics.
 
-For agent-maintained destructive release tooling I would currently choose Python or Go unless the operation is intentionally inside a Nift-owned project and the safer explicit-binding form plus an independent final-state check is enforced. The retained complex-expression execution issue is material: side effects must execute once. It would be misleading to declare Nift intrinsically safer merely because it has explicit project structure.
+For agent-maintained destructive release tooling I would currently choose Python or Go unless the operation is intentionally inside a Nift-owned project and the safer explicit-binding form plus an independent final-state check is enforced. The retained read-loop expression execution issue is material: side effects must execute once. It would be misleading to declare Nift intrinsically safer merely because it has explicit project structure.
 
 ## API experience
 
@@ -32,4 +32,14 @@ Python remains attractive where existing Python modules are actually required; N
 
 ## Product judgement
 
-Pending the final audited measurements and diagnostics. Functional correctness of the supported contracts is established locally; that alone does not establish competitive large-tree performance or a complete native hashing/metadata/recursive-cleanup API. The final judgement must distinguish project integration value from standalone filesystem throughput and destructive-operation reliability.
+**Usable for bounded Nift-owned project automation; weak as a competitive standalone large-tree filesystem toolkit in this snapshot.** Filesystem throughput is not a demonstrated Nift strength here. The supported workloads passed every exact output/reset check, but correctness does not erase the performance and API gaps.
+
+At 10k files, booted walk is 1.350s against 25.833–64.100ms for peers; stat is 3.055s against 68.224–101.339ms. Read/checksum is 13.951s, generated pipeline 17.730s and mixed automation 8.553s. Go takes 213.459ms, 676.464ms and 300.728ms respectively. At 100k, Nift walk is 14.269s and copy 59.349s; Bun walk is 200.909ms and Go copy 5.806s. These exact contracts include path inventories/serialization and, where specified, full-byte language-level checksum work. They are not bare filesystem-call speed or physical bandwidth claims.
+
+The 100MiB large-file contrast is less extreme: Nift read 295.589ms and stream-write 407.197ms for 10×10MiB, versus Python 53.368ms/139.477ms and Go 44.978ms/144.727ms. Bulk operations are operationally usable, but this is not evidence of a throughput win. Native SHA-256 and timestamp detection remain unavailable in Nift.
+
+For a new general release utility or large path-volume workflow today, I prefer Python for compact library-driven automation, Go for a maintained standalone binary, or the existing Node/Bun stack for a JS-owned project. For a small Nift-owned generation/asset task, I would still choose .f if the API contract is sufficient and explicit result binding/output verification are enforced. That is a project-integration choice, not a claim that Nift won these timings.
+
+Under equal performance **and repaired side-effect reliability**, Nift becomes my preference for bespoke Nift-owned/agent-maintained project workflows when it supplies the required metadata/hash/cleanup contracts. I would preserve explicit roots, ownership, lifecycle and independent verification while adding concise helpers. Existing Python/JS module requirements and Go runtime-free binary deployment remain concrete reasons to choose those tools. No inherent need to place Python, JS or Go underneath Nift follows from this experiment.
+
+The post-exec memory diagnostic shows Nift walk high-water marks growing from 8.848 to 193.871 MiB across 1k–100k files; it is one checked probe per cell, not an official memory distribution. The official wait4 RSS has an inherited supervisor floor and must not be used to claim a low-memory win. Ten repeated stat requests show no progressive latency increase, but do not establish long-run memory safety.
