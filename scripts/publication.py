@@ -9,9 +9,12 @@ for p in [main,supp]:
  raw+=json.loads((p/'summary.json').read_text())
 S={(x['scenario'],x['boundary'],x['engine']):x for x in raw};E=['nift','python','node','bun','go']
 def rows(names,boundary='booted',metric='wall_ms'):
- out=[]
+ out=[];limits={}
+ for key,_ in names:
+  kind=next(S[(key,boundary,e)]['kind'] for e in E if (key,boundary,e) in S)
+  limits[kind]=max(limits.get(kind,0),max(S[(key,boundary,e)][metric]['median'] for e in E if (key,boundary,e) in S))
  for key,label in names:
-  vals=[S.get((key,boundary,e),{}).get(metric,{}).get('median') for e in E];hi=max(x for x in vals if x is not None)
+  vals=[S.get((key,boundary,e),{}).get(metric,{}).get('median') for e in E];hi=limits[next(S[(key,boundary,e)]['kind'] for e in E if (key,boundary,e) in S)]
   out.append([label,[[f'{v:,.3f}',round(v/hi*100,1)] if v is not None else ['—',0] for v in vals]])
  return out
 sections=[]

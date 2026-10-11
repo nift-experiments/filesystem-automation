@@ -1,0 +1,20 @@
+"""Reproducible complete results appendix from independently audited cohorts."""
+from pathlib import Path
+import json
+R=Path(__file__).resolve().parents[1]
+paths=[R/'work/official',R/'work/filter-suite/work/official'];data=[];audits=[]
+for p in paths:
+ a=json.loads((p/'independent-audit.json').read_text());b=json.loads((p/'distribution-audit.json').read_text());assert a['pass'] and b['pass'];audits.append(a);data+=json.loads((p/'summary.json').read_text())
+E=['nift','python','node','bun','go'];S={(x['scenario'],x['boundary'],x['engine']):x for x in data}
+def val(k,b,e,metric='wall_ms',stat='median'):
+ d=S.get((k,b,e));return '—' if d is None else f"{d[metric][stat]:,.3f}"
+text=['# Filesystem / Project Automation results','', 'Accepted correctness-checked warm-state Linux automation, not disk speed. Primary and predicate supplement remain distinct frozen cohorts. No Nift core edits.', '',f"{sum(x['measured'] for x in audits):,} measured observations; {sum(x['warmups'] for x in audits):,} separate warmups; {sum(x['supported_cells'] for x in audits)} supported cells across 77 scenarios. Primary suite 999defe8dae3f9d15e9a17225e6014020be04574; filter supplement 5af31b2. Nift snapshot 445f4d3545cf031bcce4bf77a2b4a61ffb3b4c4f.",'','## Headline booted isolated requests (ms)','','| Scenario | Nift | Python | Node | Bun | Go |','|---|---:|---:|---:|---:|---:|']
+keys=['walk-1000','walk-10000','walk-100000','stat-10000','stat-100000','read-10000','read-100000','manifest-10000','write-10000','overwrite-10000','copy-100000','mirror-0-10000','mirror-10-10000','mirror-12-10000','rename-10000','delete-10000','detect-mtime-3-10000','detect-hash-3-10000','generate-10000','mixed-10000','large-read-10x10485760','large-read-100x1048576','large-write-10x10485760','large-write-100x1048576','hash-sha256-10000','filter-extension-10000','filter-prefix-10000','filter-size-10000']
+for k in keys:text.append('| '+k+' | '+' | '.join(val(k,'booted',e) for e in E)+' |')
+text+=['','## Interpretation boundaries','','Fresh includes launch/exit; booted starts after readiness and finishes on a complete serialized response. Every official request gets a new runtime. Lifetime CPU/RSS include startup even for booted requests. Exact outputs and independently reconstructed reset manifests pass. All samples remain retained; p95 is nearest-rank and equals the maximum below 20 samples.','', 'Read includes a full-byte in-language portable checksum; native SHA-256 is separate and unavailable in Nift. Large reads use a full read plus endpoint aggregate, with full SHA-256 fixture checks outside timing. Write/overwrite/large-write include source reads. Copy checks bytes/path rather than preserved metadata. Delete leaves directories. Hash change detection uses a noncryptographic recurrence, not a security guarantee.', '', 'The primary basename filters test 1/10/50% selection; the separately frozen extension/prefix/size supplement selects 20/5/40%. Mtime and content change detection have intentionally different semantics. Mixed work ignores group19 before reads, generates .md, copies .dat and writes a manifest; traversal still visits ignored paths.', '', 'Derived input-files/sec and source-MiB/sec appear in each cohort’s derived-throughput.json, with operation-specific qualifications. These are not device bandwidth measurements.', '', '## Complete distributions','','Each row reports median / p95 / min–max in ms, plus process-lifetime peak RSS median in MiB. Unavailable Nift SHA-256/mtime cells are omitted from valid observations and shown as dashes above.']
+for boundary in ['fresh','booted']:
+ text+=['',f'### {boundary}','','| Scenario | Runtime | n | Median ms | p95 ms | Min–max ms | RSS MiB |','|---|---|---:|---:|---:|---:|---:|']
+ for x in data:
+  if x['boundary']!=boundary:continue
+  k=x['scenario'];e=x['engine'];text.append(f"| {k} | {e} | {x['samples']} | {val(k,boundary,e)} | {val(k,boundary,e,stat='p95')} | {val(k,boundary,e,stat='min')}–{val(k,boundary,e,stat='max')} | {val(k,boundary,e,'process_maxrss_mib')} |")
+(R/'docs/RESULTS.md').write_text('\n'.join(text)+'\n');print(R/'docs/RESULTS.md')
