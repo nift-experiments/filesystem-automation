@@ -43,3 +43,18 @@ For a new general release utility or large path-volume workflow today, I prefer 
 Under equal performance **and repaired side-effect reliability**, Nift becomes my preference for bespoke Nift-owned/agent-maintained project workflows when it supplies the required metadata/hash/cleanup contracts. I would preserve explicit roots, ownership, lifecycle and independent verification while adding concise helpers. Existing Python/JS module requirements and Go runtime-free binary deployment remain concrete reasons to choose those tools. No inherent need to place Python, JS or Go underneath Nift follows from this experiment.
 
 The post-exec memory diagnostic shows Nift walk high-water marks growing from 8.848 to 193.871 MiB across 1k–100k files; it is one checked probe per cell, not an official memory distribution. The official wait4 RSS has an inherited supervisor floor and must not be used to claim a low-memory win. Ten repeated stat requests show no progressive latency increase, but do not establish long-run memory safety.
+
+
+## Concrete mature-Nift preference
+
+The target is not merely equal timing: metadata-bearing directory iteration, elimination of redundant status/size queries, much lower path/value allocations, faster scalar byte/string work, native cryptographic hashes, timestamp metadata, safe recursive helpers, exactly-once chained-call semantics and competitive large-tree scaling must be reliable together.
+
+| Workflow | Today | Under that mature-Nift counterfactual |
+|---|---|---|
+| Nift-owned project | Nift for bounded covered operations | Nift, sharing project policy and lifecycle |
+| New agent-authored project automation | Python/Go | Nift for programmable explicit contracts; no architectural need for another executor |
+| New release tooling | Python/Go for hashes, timestamps and cleanup | Nift for project-attached release policy; Go where delivery is a standalone binary |
+| Large tree scanner | Go for throughput and typed metadata/errors | Nift becomes viable if large-tree scaling and memory are competitive |
+| Portable standalone utility | Go | Still often Go: per-platform compiled binary, embedded dependencies, no separate script runtime installation |
+
+These are concrete deployment/integration requirements, not an unexplained ecosystem preference. Fixing the demonstrated limitations would broaden my Nift choice beyond projects already using it. The current snapshot remains far from competitive for large-tree automation. Explicit artifact ownership, roots, ordering, invalidation and lifecycle are useful structure; removing semantics to save lines is not the remedy.
