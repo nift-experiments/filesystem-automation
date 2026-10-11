@@ -1,0 +1,1 @@
+Follow docs/CAMPAIGN-BRIEF.md. No core edits. Certify local fixtures/reset/oracle before fresh cloud node. Canonical raw evidence only in lab-evidence. Preserve prior Labs output, storage guard before every Labs commit; source push then public; verify live before teardown.
