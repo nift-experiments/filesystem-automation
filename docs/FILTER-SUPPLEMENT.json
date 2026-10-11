@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "scenarios": 9,
+  "supported_cells": 90,
+  "local_correctness_observations": 90,
+  "official_measured": 2190,
+  "official_warmups": 90,
+  "base_suite_sha": "999defe8dae3f9d15e9a17225e6014020be04574",
+  "predicates": {
+    "extension": ".md (20%)",
+    "prefix": "group00/ (5%)",
+    "size": "size >= 768 bytes (40%)"
+  },
+  "counts_per_predicate": {
+    "1000": 50,
+    "10000": 20,
+    "100000": 3
+  },
+  "generated_files_sha256": {
+    "docs/SCENARIOS.json": "e41a5a083116537ca96ea17004e1c55e0e0704941746927b67618343e7f060f8",
+    "adapters/js.mjs": "4af5f9de3657723df5c37ebf5eed8cf12f1d5976f2ef06c62e276d032907508e",
+    "adapters/nift.f": "6176a92de959df0b427e70010c5e40fe0d226c8741d4d4072a9de2c2bc7f8afd",
+    "adapters/python.py": "f9470687dec54fc2edfbeb95e2e0050f0672286d3e63d550094759bd3cf740e5",
+    "adapters/go.go": "061b45e4466ca391cc5b1f0b70fdfd717d5d9d531122ed5d0933bd9ce59d8f3f",
+    "scripts/fixtures.py": "12c27abbebd69339ae1e8f20d1b6563e57d8d647b21424d8c13e42b8a631e5b1",
+    "scripts/run.py": "26340d391eb035722767d74ca38770d5b7cfc4bce836e9e13f5e2c502d85db6b",
+    "scripts/audit.py": "c20ae476ad30838eaa78b66abbbcc9c56a35ab97b64de9fe727bba61bea3d8bd"
+  },
+  "local_complete_sha256": "a6113d3e18c8ce9b8e4b87cea66f6a49d3ef184840ad1220159346965a1e1411",
+  "rejected_setup": "Go WalkDir did not follow a symlink root. Resolve the fixture root before passing it to all adapters; original primary roots were real directories and were unaffected."
+}

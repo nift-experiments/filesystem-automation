@@ -1,4 +1,4 @@
-# Method under local certification
+# Frozen primary-cohort method
 
 Project-tree automation on warm Linux filesystem state, not physical disk speed. Same deterministic fixtures, native in-language operations, no external find/copy/hash helpers. Sequential operations; filesystem concurrency is omitted because the separate campaign already covers it.
 
@@ -24,7 +24,7 @@ Read/checksum uses the same noncryptographic recurrence h=(31h+byte)%1000000007 
 
 Stat contract: regular-file size/type, not mtime. Nift stat exposes no mtime in this snapshot, so timestamp detection cells are unavailable. Others compare integer-second mtimes. Detection mutations use the same 1% set: changed bytes/newer time; identical bytes/newer time; changed bytes/restored time. These provide distinct guarantees.
 
-Filter selects deterministic filename-id residues (1/10/50%) in the five source extensions under group directories with size≥96. Mirror uses content recurrence equality, preserves identical files, copies changes/additions and removes unexpected files. Profiles: clean, 1% content, 10% content, 10% content plus 1% added/deleted, and 1% added/deleted only. Copy correctness is paths/bytes, not permissions/mtime preservation. Stream write/overwrite include reading source bytes. Delete removes all files, leaving directories: Nift public remove rejects directories; recursive directory deletion is not falsely presented as equivalent. Rename batches traverse source paths; relocation renames top-level group directories within one filesystem.
+Primary filter cases select deterministic filename-id residues (1/10/50%). All five extensions, group directories and sizes≥96 are fixture invariants, not independently tested predicates. A separately frozen supplement tests .md extension, group00/ prefix and size≥768 at each tree size. These cohorts retain distinct suite identities and observations. Mirror uses content recurrence equality, preserves identical files, copies changes/additions and removes unexpected files. Profiles: clean, 1% content, 10% content, 10% content plus 1% added/deleted, and 1% added/deleted only. Copy correctness is paths/bytes, not permissions/mtime preservation. Stream write/overwrite include reading source bytes. Delete removes all files, leaving directories: Nift public remove rejects directories; recursive directory deletion is not falsely presented as equivalent. Rename batches traverse source paths; relocation renames top-level group directories within one filesystem.
 
 Generated pipeline reads/checksums source and writes generated-prefix content plus a sorted TSV manifest. Mixed workflow ignores group19, selects .md/.dat, generates .md outputs, copies .dat assets unchanged and writes a manifest. Selection is applied before reads, but traversal itself still visits ignored paths. The controlled transform is intentionally light; this is not a site build.
 
