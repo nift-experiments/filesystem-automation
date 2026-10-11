@@ -12,4 +12,7 @@ rows=[x for x in rows if x['n']<100000 or x['kind'] in {'walk','stat','filter','
 for count,size in [(10,10485760),(100,1048576)]:
  for kind in ['large-read','large-write']:rows.append(dict(id=f'{kind}-{count}x{size}',kind=kind,n=count,variant=0,large_bytes=size))
 # Costs and counts are frozen only after local feasibility.
-if __name__=='__main__':Path('docs/SCENARIOS.json').write_text(json.dumps(rows,indent=2)+'\n')
+if __name__=='__main__':
+ p=Path('docs/SCENARIOS.json')
+ if p.exists() and any('samples' in x for x in json.loads(p.read_text())):raise SystemExit('Frozen sample matrix exists; do not overwrite it')
+ p.write_text(json.dumps(rows,indent=2)+'\n')

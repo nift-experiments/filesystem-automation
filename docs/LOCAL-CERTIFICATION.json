@@ -1,0 +1,36 @@
+{
+  "pass": true,
+  "supported_scenario_engine_pairs": 331,
+  "scenarios": 68,
+  "local_result_sha256": "f8ca4456bf98706314fad322c9f6e800f807a8f26f76d898636320356c4b4493",
+  "supervisor_fresh_booted_cases": 50,
+  "fixtures": {
+    "fixture-1000.json": {
+      "bytes": 147001,
+      "sha256": "c5ce6147d3abf93f11a7ee342f57476da28f401393a5b9ecbb5afeb84887e75c",
+      "files": 1000
+    },
+    "fixture-10000.json": {
+      "bytes": 1470001,
+      "sha256": "a4507f9be46d860fb1cd19e51787d82f6b1b9186a267a46476fb823823ed46d4",
+      "files": 10000
+    },
+    "fixture-100000.json": {
+      "bytes": 14700001,
+      "sha256": "e05d778d71d11d929584343d87addffcbf647a27e6cbc224443f3452e5580077",
+      "files": 100000
+    },
+    "fixture-large-10.json": {
+      "bytes": 1281,
+      "sha256": "4082b1ff02768b060081c801af25a08e08968482ee7daf91209edfe6dde84ff5",
+      "files": 10
+    },
+    "fixture-large-100.json": {
+      "bytes": 12701,
+      "sha256": "9e217e6e12d1956e6044872a0a7206731324f8fd8e29c5add5922848f9dc9707",
+      "files": 100
+    }
+  },
+  "projected_timed_runtime_seconds_from_local_feasibility": 9371,
+  "sample_policy": "Common per scenario across engines: 50 short 1k; 20 moderate/large-buffer; 10 multi-second; 5 slow 10k; 3 expensive 100k. One separate warmup per boundary/engine."
+}

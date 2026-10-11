@@ -12,7 +12,7 @@ if(kind==='detect-mtime'&&fs.existsSync(q)&&Math.floor(fs.statSync(p).mtimeMs/10
 if(kind==='detect-hash'&&fs.existsSync(q)&&v===sum(fs.readFileSync(q)))continue;
 if(kind==='clean'){if(!fs.existsSync(q))rows.push([rel,'missing',0]);else if(v!==sum(fs.readFileSync(q)))rows.push([rel,'modified',0]);continue;}
 if(kind==='mixed'&&!/\.(md|dat)$/.test(rel))continue;
-if(['write','overwrite','copy','mirror','generate','mixed','large-write'].includes(kind)){fs.mkdirSync(path.dirname(q),{recursive:true});if(['generate','mixed'].includes(kind))fs.writeFileSync(q+'.generated',Buffer.concat([Buffer.from('generated\n'),fs.readFileSync(p)]));else if(kind==='mirror'){if(!fs.existsSync(q)||v!==sum(fs.readFileSync(q)))fs.copyFileSync(p,q);}else if(kind==='copy')fs.copyFileSync(p,q);else fs.writeFileSync(q,fs.readFileSync(p));}
+if(['write','overwrite','copy','mirror','generate','mixed','large-write'].includes(kind)){fs.mkdirSync(path.dirname(q),{recursive:true});if(kind==='mixed'&&rel.endsWith('.dat'))fs.copyFileSync(p,q);else if(['generate','mixed'].includes(kind))fs.writeFileSync(q+'.generated',Buffer.concat([Buffer.from('generated\n'),fs.readFileSync(p)]));else if(kind==='mirror'){if(!fs.existsSync(q)||v!==sum(fs.readFileSync(q)))fs.copyFileSync(p,q);}else if(kind==='copy')fs.copyFileSync(p,q);else fs.writeFileSync(q,fs.readFileSync(p));}
 if(kind==='rename')fs.renameSync(q,q+'.renamed');if(kind==='delete')fs.unlinkSync(q);
 if(['manifest','generate','mixed'].includes(kind))lines.push([rel,`${rel}\t${size}\t${v}\n`]);rows.push([rel,size,v]);}
 if(['mirror','clean'].includes(kind))for(const [rel,dir] of walk(dest))if(!dir&&!fs.existsSync(root+'/'+rel)){if(kind==='mirror')fs.unlinkSync(dest+'/'+rel);else rows.push([rel,'unexpected',0]);}

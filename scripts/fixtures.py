@@ -96,8 +96,9 @@ def verify_output(kind,source,dest,start,n):
   expected={'moved/'+k:v['sha256'] for k,v in manifest(source).items()};assert {k:v['sha256'] for k,v in manifest(dest).items()}==expected
  elif kind=='delete':assert not manifest(dest)
  elif kind in {'generate','mixed'}:
-  paths=manifest(source);selected={k for k in paths if kind=='generate' or (not k.startswith('group19/') and k.endswith(('.md','.dat')))};actual=manifest(dest);assert set(actual)=={k+'.generated' for k in selected}|{'manifest.tsv'}
-  for k in selected:assert (dest/(k+'.generated')).read_bytes()==b'generated\n'+(source/k).read_bytes()
+  paths=manifest(source);selected={k for k in paths if kind=='generate' or (not k.startswith('group19/') and k.endswith(('.md','.dat')))};actual=manifest(dest);assert set(actual)=={k if kind=='mixed' and k.endswith('.dat') else k+'.generated' for k in selected}|{'manifest.tsv'}
+  for k in selected:
+   target=k if kind=='mixed' and k.endswith('.dat') else k+'.generated';prefix=b'' if target==k else b'generated\n';assert (dest/target).read_bytes()==prefix+(source/k).read_bytes()
   lines=''.join(f'{k}\t{paths[k]["size"]}\t{checksum((source/k).read_bytes())}\n' for k in sorted(selected));assert (dest/'manifest.tsv').read_text()==lines
  elif kind=='manifest':
   paths=manifest(source);lines=''.join(f'{k}\t{paths[k]["size"]}\t{checksum((source/k).read_bytes())}\n' for k in sorted(paths));assert (dest/'manifest.tsv').read_text()==lines

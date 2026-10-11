@@ -43,7 +43,8 @@ def execute(kind,root,dest,n,variant):
   if kind=='mixed' and not rel.endswith(('.md','.dat')):continue
   if kind in {'write','overwrite','copy','mirror','generate','mixed','large-write'}:
    os.makedirs(os.path.dirname(q),exist_ok=True)
-   if kind in {'generate','mixed'}:Path(q+'.generated').write_bytes(b'generated\n'+Path(p).read_bytes())
+   if kind=='mixed' and rel.endswith('.dat'):shutil.copyfile(p,q)
+   elif kind in {'generate','mixed'}:Path(q+'.generated').write_bytes(b'generated\n'+Path(p).read_bytes())
    elif kind=='mirror':
     if not os.path.exists(q) or v!=checksum(Path(q).read_bytes()):shutil.copyfile(p,q)
    elif kind=='copy':shutil.copyfile(p,q)

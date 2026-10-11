@@ -26,10 +26,11 @@ fn(execute(kind,root,dest,n,variant)) {
   if(kind == "mixed" && !rel.ends_with(".md") && !rel.ends_with(".dat")) { continue }
   if(kind == "large-write" || kind == "write" || kind == "overwrite" || kind == "copy" || kind == "mirror" || kind == "generate" || kind == "mixed") {
    make_dir(dest + "/" + parent(rel))
-   if(kind == "generate" || kind == "mixed") { write(q + ".generated","generated\n" + open(p)) } else {
+   if(kind == "mixed" && rel.ends_with(".dat")) { copy(p,q) } else { if(kind == "generate" || kind == "mixed") { write(q + ".generated","generated\n" + open(p)) } else {
     if(kind == "mirror") { if(!exists(q) || v != checksum(open_bytes(q))) { copy(p,q) } } else {
      if(kind == "copy") { copy(p,q) } else { write(q,open_bytes(p)) }
     }
+   }
    }
   }
   if(kind == "rename") { move(q,q + ".renamed") }

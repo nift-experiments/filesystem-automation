@@ -1,0 +1,8 @@
+{
+  "paired_inline_executions": 3,
+  "explicit_binding_executions": 1,
+  "supervisor_cases_passed": 50,
+  "edge_paths_passed_all_engines": true,
+  "core_unchanged": true,
+  "retained_harness": "scripts/semantics.py"
+}

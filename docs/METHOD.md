@@ -26,8 +26,10 @@ Stat contract: regular-file size/type, not mtime. Nift stat exposes no mtime in 
 
 Filter selects deterministic filename-id residues (1/10/50%) in the five source extensions under group directories with size≥96. Mirror uses content recurrence equality, preserves identical files, copies changes/additions and removes unexpected files. Profiles: clean, 1% content, 10% content, 10% content plus 1% added/deleted, and 1% added/deleted only. Copy correctness is paths/bytes, not permissions/mtime preservation. Stream write/overwrite include reading source bytes. Delete removes all files, leaving directories: Nift public remove rejects directories; recursive directory deletion is not falsely presented as equivalent. Rename batches traverse source paths; relocation renames top-level group directories within one filesystem.
 
-Generated pipeline reads/checksums source and writes generated-prefix content plus a sorted TSV manifest. Mixed workflow ignores group19, selects .md/.dat, generates corresponding outputs and a manifest. Selection is applied before reads, but traversal itself still visits ignored paths. The controlled transform is intentionally light; this is not a site build.
+Generated pipeline reads/checksums source and writes generated-prefix content plus a sorted TSV manifest. Mixed workflow ignores group19, selects .md/.dat, generates .md outputs, copies .dat assets unchanged and writes a manifest. Selection is applied before reads, but traversal itself still visits ignored paths. The controlled transform is intentionally light; this is not a site build.
 
 ## Lifecycle
 
 Every destructive sample restores outside timing, records a starting-state SHA-256, warms source/destination by full reads/stat, measures, and verifies the exact final state. Participant order rotates within rounds; warmups remain separate; all samples retained. No global cache dropping. Sample counts are frozen after local feasibility and common across participants per scenario.
+
+Frozen plan: 68 scenarios, 662 supported boundary/runtime cells, 12074 measured observations and 662 separate warmups. Local projected timed work is 9,371 seconds, excluding fixture preparation/verification and cloud-machine differences. Stress distributions with three samples are descriptive; nearest-rank p95 equals maximum for fewer than 20 samples.
