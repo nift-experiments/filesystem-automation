@@ -5,6 +5,7 @@ R=Path(__file__).resolve().parents[1];main=R/'work/official';supp=R/'work/filter
 raw=[]
 for p in [main,supp]:
  audit=json.loads((p/'independent-audit.json').read_text());assert audit['pass']
+ assert json.loads((p/'distribution-audit.json').read_text())['pass']
  assert hashlib.sha256((p/'summary.json').read_bytes()).hexdigest()==audit['summary_sha256']
  raw+=json.loads((p/'summary.json').read_text())
 S={(x['scenario'],x['boundary'],x['engine']):x for x in raw};E=['nift','python','node','bun','go']
