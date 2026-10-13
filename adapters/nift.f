@@ -18,7 +18,7 @@ fn(execute(kind,root,dest,n,variant)) {
   if(dir) { if(kind == "walk") { rows.push([rel,-1,0]) }; continue }
   if(kind == "walk") { rows.push([rel,0,0]); continue }
   if(kind == "mixed" && (rel.starts_with("group19/") || (!rel.ends_with(".md") && !rel.ends_with(".dat")))) { continue }; size := stat(p).size; v := 0
-  if(kind == "filter") { names := rel.split("/"); fname := names[names.size()-1]; id := fname.substr(1,6).to_int(); if(id%100 >= variant) { continue } }
+  if(kind == "filter") { if((variant == 101 && !rel.ends_with(".md")) || (variant == 102 && !rel.starts_with("group00/")) || (variant == 103 && size < 768)) { continue } }
   if(kind == "read" || kind == "hash-portable" || kind == "mirror" || kind == "detect-hash" || kind == "clean" || kind == "manifest" || kind == "generate" || kind == "mixed") { v = checksum(open_bytes(p)) }
   if(kind == "large-read") { data := open_bytes(p); v = data[0]*256 + data[data.size()-1] }
   if(kind == "detect-hash") { if(exists(q) && v == checksum(open_bytes(q))) { continue } }

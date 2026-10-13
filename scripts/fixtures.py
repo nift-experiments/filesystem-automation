@@ -63,7 +63,7 @@ def expected(kind,source,dest,n,variant):
   elif kind=='stat':rows.append([rel,size,0])
   elif kind=='filter':
    i=int(p.stem[1:])
-   if i%100<variant and p.suffix in {'.md','.json','.cpp','.txt','.dat'} and p.parent.parts[-3].startswith('group') and size>=96:rows.append([rel,size,0])
+   if (variant==101 and p.suffix=='.md') or (variant==102 and rel.startswith('group00/')) or (variant==103 and size>=768):rows.append([rel,size,0])
   elif kind in {'read','hash-portable','detect-hash','clean','mirror','manifest','generate','mixed'}:
    if kind.startswith('detect'):
     q=dest/rel

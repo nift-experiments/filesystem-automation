@@ -27,7 +27,7 @@ def execute(kind,root,dest,n,variant):
   if kind=='mixed' and (rel.startswith('group19/') or not rel.endswith(('.md','.dat'))):continue
   size=os.stat(p).st_size
   if kind=='filter':
-   if int(Path(rel).stem[1:])%100>=variant:continue
+   if (variant==101 and not rel.endswith('.md')) or (variant==102 and not rel.startswith('group00/')) or (variant==103 and size<768):continue
   if kind in {'read','hash-portable','mirror','detect-hash','clean','manifest','generate','mixed'}:v=checksum(Path(p).read_bytes())
   if kind=='large-read':
    b=Path(p).read_bytes();v=b[0]*256+b[-1]

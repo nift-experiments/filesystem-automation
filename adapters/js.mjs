@@ -4,7 +4,7 @@ function sum(b){let h=0;for(const x of b)h=(h*31+x)%1000000007;return h;}
 function execute(kind,root,dest,n,variant){let rows=[],lines=[];const entries=walk(root);
 if(kind==='relocate'){fs.mkdirSync(dest+'/moved',{recursive:true});for(let x of fs.readdirSync(dest))if(x!=='moved')fs.renameSync(dest+'/'+x,dest+'/moved/'+x);}
 for(const [rel,dir] of entries){const p=root+'/'+rel,q=dest+'/'+rel;if(dir){if(kind==='walk')rows.push([rel,-1,0]);continue;}if(kind==='walk'){rows.push([rel,0,0]);continue;}if(kind==='mixed'&&(rel.startsWith('group19/')||! /\.(md|dat)$/.test(rel)))continue;let size=fs.statSync(p).size,v=0;
-if(kind==='filter'&&Number(path.basename(rel).slice(1,7))%100>=variant)continue;
+if(kind==='filter'&&((variant===101&&!rel.endsWith('.md'))||(variant===102&&!rel.startsWith('group00/'))||(variant===103&&size<768)))continue;
 if(['read','hash-portable','mirror','detect-hash','clean','manifest','generate','mixed'].includes(kind))v=sum(fs.readFileSync(p));
 if(kind==='large-read'){let b=fs.readFileSync(p);v=b[0]*256+b[b.length-1];}
 if(kind==='hash-sha256')v=crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');

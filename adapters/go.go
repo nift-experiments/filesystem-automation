@@ -10,7 +10,7 @@ func cp(p,q string){a,e:=os.Open(p);must(e);defer a.Close();b,e:=os.Create(q);mu
 func execute(kind,root,dest string,n,variant int)[][]any{rows:=[][]any{};lines:=[]string{};entries:=walk(root)
 if kind=="relocate"{must(os.MkdirAll(dest+"/moved",0755));ents,e:=os.ReadDir(dest);must(e);for _,x:=range ents{if x.Name()!="moved"{must(os.Rename(dest+"/"+x.Name(),dest+"/moved/"+x.Name()))}}}
 for _,entry:=range entries{rel:=entry.Rel;p:=root+"/"+rel;q:=dest+"/"+rel;if entry.Dir{if kind=="walk"{rows=append(rows,[]any{rel,-1,0})};continue};if kind=="walk"{rows=append(rows,[]any{rel,0,0});continue};if kind=="mixed"&&(strings.HasPrefix(rel,"group19/")||(!strings.HasSuffix(rel,".md")&&!strings.HasSuffix(rel,".dat"))){continue};st,e:=os.Stat(p);must(e);size:=st.Size();var v any=int64(0)
-if kind=="filter"{id,e:=strconv.Atoi(filepath.Base(rel)[1:7]);must(e);if id%100>=variant{continue}}
+if kind=="filter"{if (variant==101&&!strings.HasSuffix(rel,".md"))||(variant==102&&!strings.HasPrefix(rel,"group00/"))||(variant==103&&size<768){continue}}
 if kind=="read"||kind=="hash-portable"||kind=="mirror"||kind=="detect-hash"||kind=="clean"||kind=="manifest"||kind=="generate"||kind=="mixed"{v=sum(read(p))}
 if kind=="large-read"{b:=read(p);v=int64(b[0])*256+int64(b[len(b)-1])}
 if kind=="hash-sha256"{h:=sha256.Sum256(read(p));v=hex.EncodeToString(h[:])}

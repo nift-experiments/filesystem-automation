@@ -21,7 +21,7 @@ def audit(directory,quick_certify=False):
    assert meta['size']==len(b) and meta['sha256']==hashlib.sha256(b).hexdigest() and meta['mtime']==1700000000
    kind=c['kind'];v=0;s=len(b)
    if kind=='walk':s=0
-   elif kind=='filter' and i%100>=c['variant']:continue
+   elif kind=='filter' and not ((c['variant']==101 and rel.endswith('.md')) or (c['variant']==102 and rel.startswith('group00/')) or (c['variant']==103 and s>=768)):continue
    elif kind in {'read','mirror','manifest','generate','mixed','detect-hash'}:
     for x in b:v=(v*31+x)%1000000007
     if kind=='mixed' and (rel.startswith('group19/') or not rel.endswith(('.md','.dat'))):continue

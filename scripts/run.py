@@ -27,7 +27,7 @@ def main():
  cases=json.loads((R/'docs/SCENARIOS.json').read_text());suite=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();environment={'suite_sha':suite,'nift_source_sha':subprocess.check_output(['git','-C','work/nift-source','rev-parse','HEAD'],text=True).strip(),'nift_version':subprocess.check_output([commands()['nift'][0],'version'],text=True).strip(),'compiler':subprocess.check_output(['g++','--version'],text=True).strip(),'versions':json.loads(Path(os.environ.get('NIFT_BENCH_VERSIONS_JSON',str(R/'docs/VERSIONS.json'))).read_text()),'platform':subprocess.check_output(['uname','-a'],text=True).strip(),'cpu':subprocess.check_output(['lscpu'],text=True),'filesystem':subprocess.check_output(['findmnt','-T',str(R),'-o','SOURCE,FSTYPE,OPTIONS'],text=True),'df':subprocess.check_output(['df','-B1',str(R)],text=True),'affinity':sorted(os.sched_getaffinity(0))[:4],'binaries':{e:hashlib.sha256(Path(cmd[0]).read_bytes()).hexdigest() for e,cmd in commands().items()}}
  (out/'environment.json').write_text(json.dumps(environment,indent=2));observations=out/'observations.jsonl';summary=[];seq=0
  for c in cases:
-  n=c['n'];root=R/f"work/fixtures/{'large-'+str(n) if 'large_bytes' in c else n}";dest=R/'work/destination'
+  n=c['n'];root=R/f"work/fixtures/{'large-'+str(n) if 'large_bytes' in c else n}";root=root.resolve();dest=R/'work/destination'
   if not root.exists():
    m=fixtures.generate_large(root,n,c['large_bytes']) if 'large_bytes' in c else fixtures.generate(root,n)
    (out/f"fixture-{root.name}.json").write_text(json.dumps(m,separators=(',',':')))

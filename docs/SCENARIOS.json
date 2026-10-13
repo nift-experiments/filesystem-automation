@@ -1,482 +1,65 @@
 [
   {
-    "id": "walk-1000",
-    "kind": "walk",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "stat-1000",
-    "kind": "stat",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "read-1000",
-    "kind": "read",
-    "n": 1000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "hash-sha256-1000",
-    "kind": "hash-sha256",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "manifest-1000",
-    "kind": "manifest",
-    "n": 1000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "write-1000",
-    "kind": "write",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "overwrite-1000",
-    "kind": "overwrite",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "copy-1000",
-    "kind": "copy",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "rename-1000",
-    "kind": "rename",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "relocate-1000",
-    "kind": "relocate",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "delete-1000",
-    "kind": "delete",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "generate-1000",
-    "kind": "generate",
-    "n": 1000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "mixed-1000",
-    "kind": "mixed",
-    "n": 1000,
-    "variant": 0,
-    "samples": 50
-  },
-  {
-    "id": "clean-1000",
-    "kind": "clean",
-    "n": 1000,
-    "variant": 1,
-    "samples": 10
-  },
-  {
-    "id": "filter-1-1000",
+    "id": "filter-extension-1000",
     "kind": "filter",
     "n": 1000,
-    "variant": 1,
+    "variant": 101,
     "samples": 50
   },
   {
-    "id": "filter-10-1000",
+    "id": "filter-prefix-1000",
     "kind": "filter",
     "n": 1000,
-    "variant": 10,
+    "variant": 102,
     "samples": 50
   },
   {
-    "id": "filter-50-1000",
+    "id": "filter-size-1000",
     "kind": "filter",
     "n": 1000,
-    "variant": 50,
+    "variant": 103,
     "samples": 50
   },
   {
-    "id": "mirror-0-1000",
-    "kind": "mirror",
-    "n": 1000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "mirror-1-1000",
-    "kind": "mirror",
-    "n": 1000,
-    "variant": 1,
-    "samples": 10
-  },
-  {
-    "id": "mirror-10-1000",
-    "kind": "mirror",
-    "n": 1000,
-    "variant": 10,
-    "samples": 10
-  },
-  {
-    "id": "mirror-11-1000",
-    "kind": "mirror",
-    "n": 1000,
-    "variant": 11,
-    "samples": 10
-  },
-  {
-    "id": "mirror-12-1000",
-    "kind": "mirror",
-    "n": 1000,
-    "variant": 12,
-    "samples": 10
-  },
-  {
-    "id": "detect-mtime-1-1000",
-    "kind": "detect-mtime",
-    "n": 1000,
-    "variant": 1,
-    "samples": 50
-  },
-  {
-    "id": "detect-mtime-2-1000",
-    "kind": "detect-mtime",
-    "n": 1000,
-    "variant": 2,
-    "samples": 50
-  },
-  {
-    "id": "detect-mtime-3-1000",
-    "kind": "detect-mtime",
-    "n": 1000,
-    "variant": 3,
-    "samples": 50
-  },
-  {
-    "id": "detect-hash-1-1000",
-    "kind": "detect-hash",
-    "n": 1000,
-    "variant": 1,
-    "samples": 10
-  },
-  {
-    "id": "detect-hash-2-1000",
-    "kind": "detect-hash",
-    "n": 1000,
-    "variant": 2,
-    "samples": 10
-  },
-  {
-    "id": "detect-hash-3-1000",
-    "kind": "detect-hash",
-    "n": 1000,
-    "variant": 3,
-    "samples": 10
-  },
-  {
-    "id": "walk-10000",
-    "kind": "walk",
+    "id": "filter-extension-10000",
+    "kind": "filter",
     "n": 10000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "stat-10000",
-    "kind": "stat",
-    "n": 10000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "read-10000",
-    "kind": "read",
-    "n": 10000,
-    "variant": 0,
-    "samples": 5
-  },
-  {
-    "id": "hash-sha256-10000",
-    "kind": "hash-sha256",
-    "n": 10000,
-    "variant": 0,
+    "variant": 101,
     "samples": 20
   },
   {
-    "id": "manifest-10000",
-    "kind": "manifest",
-    "n": 10000,
-    "variant": 0,
-    "samples": 5
-  },
-  {
-    "id": "write-10000",
-    "kind": "write",
-    "n": 10000,
-    "variant": 0,
-    "samples": 5
-  },
-  {
-    "id": "overwrite-10000",
-    "kind": "overwrite",
-    "n": 10000,
-    "variant": 0,
-    "samples": 5
-  },
-  {
-    "id": "copy-10000",
-    "kind": "copy",
-    "n": 10000,
-    "variant": 0,
-    "samples": 5
-  },
-  {
-    "id": "rename-10000",
-    "kind": "rename",
-    "n": 10000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "relocate-10000",
-    "kind": "relocate",
-    "n": 10000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "delete-10000",
-    "kind": "delete",
-    "n": 10000,
-    "variant": 0,
-    "samples": 10
-  },
-  {
-    "id": "generate-10000",
-    "kind": "generate",
-    "n": 10000,
-    "variant": 0,
-    "samples": 5
-  },
-  {
-    "id": "mixed-10000",
-    "kind": "mixed",
-    "n": 10000,
-    "variant": 0,
-    "samples": 5
-  },
-  {
-    "id": "clean-10000",
-    "kind": "clean",
-    "n": 10000,
-    "variant": 1,
-    "samples": 5
-  },
-  {
-    "id": "filter-1-10000",
+    "id": "filter-prefix-10000",
     "kind": "filter",
     "n": 10000,
-    "variant": 1,
-    "samples": 10
+    "variant": 102,
+    "samples": 20
   },
   {
-    "id": "filter-10-10000",
+    "id": "filter-size-10000",
     "kind": "filter",
     "n": 10000,
-    "variant": 10,
-    "samples": 10
-  },
-  {
-    "id": "filter-50-10000",
-    "kind": "filter",
-    "n": 10000,
-    "variant": 50,
-    "samples": 10
-  },
-  {
-    "id": "mirror-0-10000",
-    "kind": "mirror",
-    "n": 10000,
-    "variant": 0,
-    "samples": 5
-  },
-  {
-    "id": "mirror-1-10000",
-    "kind": "mirror",
-    "n": 10000,
-    "variant": 1,
-    "samples": 5
-  },
-  {
-    "id": "mirror-10-10000",
-    "kind": "mirror",
-    "n": 10000,
-    "variant": 10,
-    "samples": 5
-  },
-  {
-    "id": "mirror-11-10000",
-    "kind": "mirror",
-    "n": 10000,
-    "variant": 11,
-    "samples": 5
-  },
-  {
-    "id": "mirror-12-10000",
-    "kind": "mirror",
-    "n": 10000,
-    "variant": 12,
-    "samples": 5
-  },
-  {
-    "id": "detect-mtime-1-10000",
-    "kind": "detect-mtime",
-    "n": 10000,
-    "variant": 1,
+    "variant": 103,
     "samples": 20
   },
   {
-    "id": "detect-mtime-2-10000",
-    "kind": "detect-mtime",
-    "n": 10000,
-    "variant": 2,
-    "samples": 20
-  },
-  {
-    "id": "detect-mtime-3-10000",
-    "kind": "detect-mtime",
-    "n": 10000,
-    "variant": 3,
-    "samples": 20
-  },
-  {
-    "id": "detect-hash-1-10000",
-    "kind": "detect-hash",
-    "n": 10000,
-    "variant": 1,
-    "samples": 5
-  },
-  {
-    "id": "detect-hash-2-10000",
-    "kind": "detect-hash",
-    "n": 10000,
-    "variant": 2,
-    "samples": 5
-  },
-  {
-    "id": "detect-hash-3-10000",
-    "kind": "detect-hash",
-    "n": 10000,
-    "variant": 3,
-    "samples": 5
-  },
-  {
-    "id": "walk-100000",
-    "kind": "walk",
-    "n": 100000,
-    "variant": 0,
-    "samples": 3
-  },
-  {
-    "id": "stat-100000",
-    "kind": "stat",
-    "n": 100000,
-    "variant": 0,
-    "samples": 3
-  },
-  {
-    "id": "read-100000",
-    "kind": "read",
-    "n": 100000,
-    "variant": 0,
-    "samples": 3
-  },
-  {
-    "id": "hash-sha256-100000",
-    "kind": "hash-sha256",
-    "n": 100000,
-    "variant": 0,
-    "samples": 3
-  },
-  {
-    "id": "copy-100000",
-    "kind": "copy",
-    "n": 100000,
-    "variant": 0,
-    "samples": 3
-  },
-  {
-    "id": "filter-1-100000",
+    "id": "filter-extension-100000",
     "kind": "filter",
     "n": 100000,
-    "variant": 1,
+    "variant": 101,
     "samples": 3
   },
   {
-    "id": "filter-10-100000",
+    "id": "filter-prefix-100000",
     "kind": "filter",
     "n": 100000,
-    "variant": 10,
+    "variant": 102,
     "samples": 3
   },
   {
-    "id": "filter-50-100000",
+    "id": "filter-size-100000",
     "kind": "filter",
     "n": 100000,
-    "variant": 50,
+    "variant": 103,
     "samples": 3
-  },
-  {
-    "id": "large-read-10x10485760",
-    "kind": "large-read",
-    "n": 10,
-    "variant": 0,
-    "large_bytes": 10485760,
-    "samples": 20
-  },
-  {
-    "id": "large-write-10x10485760",
-    "kind": "large-write",
-    "n": 10,
-    "variant": 0,
-    "large_bytes": 10485760,
-    "samples": 20
-  },
-  {
-    "id": "large-read-100x1048576",
-    "kind": "large-read",
-    "n": 100,
-    "variant": 0,
-    "large_bytes": 1048576,
-    "samples": 20
-  },
-  {
-    "id": "large-write-100x1048576",
-    "kind": "large-write",
-    "n": 100,
-    "variant": 0,
-    "large_bytes": 1048576,
-    "samples": 20
   }
 ]
