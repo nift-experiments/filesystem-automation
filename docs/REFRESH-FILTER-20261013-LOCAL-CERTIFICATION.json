@@ -1,0 +1,28 @@
+{
+  "candidate_sha": "7f7e487c47a87e871dfef53345e2b71288008bff",
+  "primary_suite_sha": "75e77bb4bb6fb0b8c49920f641c77b394aec5985",
+  "scope": "untimed full-shape correctness; single sample, not official results",
+  "pass": true,
+  "scenarios": 9,
+  "supported_cells": 90,
+  "independent_audit": {
+    "pass": true,
+    "quick_certification": true,
+    "scenarios": 9,
+    "supported_cells": 90,
+    "measured": 90,
+    "warmups": 0,
+    "observations": 90,
+    "independent_fixture_specification_and_row_fingerprints": true,
+    "observations_sha256": "2d528daeece0ffbd7d953a1199a401e2512efd6bfe39f0ccbde2a9e158979929",
+    "summary_sha256": "56e13aeffd1fc46aee28b96b773bedbebf863635f2cae0eab35fd0ce4be5a31e"
+  },
+  "distribution_audit": {
+    "method": "Independent reset-state manifests, nearest-rank p95 and all metric distributions; no dropped observations",
+    "cells": 90,
+    "measured": 90,
+    "summary_sha256": "56e13aeffd1fc46aee28b96b773bedbebf863635f2cae0eab35fd0ce4be5a31e",
+    "pass": true
+  },
+  "receipt_directory": "/tmp/filesystem-filter-refresh-protocol/work"
+}
