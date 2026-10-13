@@ -2,7 +2,8 @@
 from pathlib import Path
 import subprocess,json,os
 R=Path(__file__).resolve().parents[1]
-BASE='999defe8dae3f9d15e9a17225e6014020be04574'
+BASE=os.environ.get('FS_FILTER_BASE_SHA','999defe8dae3f9d15e9a17225e6014020be04574')
+assert len(BASE)==40 and all(c in '0123456789abcdef' for c in BASE),'FS_FILTER_BASE_SHA must be a full SHA'
 D=R/'work/filter-suite'
 assert not D.exists(),'Supplement directory already exists'
 D.mkdir(parents=True)

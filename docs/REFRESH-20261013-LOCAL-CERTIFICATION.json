@@ -1,0 +1,54 @@
+{
+  "candidate_sha": "7f7e487c47a87e871dfef53345e2b71288008bff",
+  "scope": "local correctness only; single-sample full-shape certificate, not official measurements",
+  "pass": true,
+  "full_shape_scenarios": 68,
+  "full_shape_supported_cells": 662,
+  "small20file_cells": 136,
+  "independent_audit": {
+    "pass": true,
+    "quick_certification": true,
+    "scenarios": 68,
+    "supported_cells": 662,
+    "measured": 662,
+    "warmups": 0,
+    "observations": 662,
+    "independent_fixture_specification_and_row_fingerprints": true,
+    "observations_sha256": "1b0fbe0f7652a491a7a2a36e7e4e79171bba3ae9476dd6aa5a8fb1117e65b4ed",
+    "summary_sha256": "bcf9d1985bea0a63fbc2b09694df5f061a9c5f4c81318b074af79869cfec13e0"
+  },
+  "distribution_audit": {
+    "method": "Independent reset-state manifests, nearest-rank p95 and all metric distributions; no dropped observations",
+    "cells": 662,
+    "measured": 662,
+    "summary_sha256": "bcf9d1985bea0a63fbc2b09694df5f061a9c5f4c81318b074af79869cfec13e0",
+    "pass": true
+  },
+  "semantic_acceptance": {
+    "pass": true,
+    "candidate_sha": "7f7e487c47a87e871dfef53345e2b71288008bff",
+    "scope": "untimed refresh semantic/capability gates",
+    "edge_path_engines": 5,
+    "inline_execute_count": 1,
+    "repro": {
+      "inline-loop.f": {
+        "execute_count": 1,
+        "stdout_sha256": "f7723593ab38f8e0ec0eeb536339ccbf5e85073407fb02460c8c038687914d45"
+      },
+      "bound-loop.f": {
+        "execute_count": 1,
+        "stdout_sha256": "f7723593ab38f8e0ec0eeb536339ccbf5e85073407fb02460c8c038687914d45"
+      }
+    },
+    "remaining_gaps": [
+      "native SHA-256",
+      "stat timestamp",
+      "recursive directory removal"
+    ],
+    "missing_directory_behavior": "Nift errors; Python empty-success behavior retained as non-equivalence"
+  },
+  "negative_audit_control": "Default official-count audit rejects quick certification identity",
+  "candidate_cli_sha256": "f13f0b5c99afa3c4afa320d33cad88f0819d3fad384dc3a6d51364d79206e11e",
+  "receipt_directory": "/tmp/runtime-suite-refresh-certification/filesystem-automation/work",
+  "tested_baseline_plus_additive_harness": "97aab31427708f4864b6a685839829a8f4175fb8 with opt-in refresh edits; new suite freeze follows certification"
+}

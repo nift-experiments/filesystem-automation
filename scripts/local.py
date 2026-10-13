@@ -3,7 +3,8 @@ import os,sys,json,time,subprocess,hashlib
 R=Path(__file__).resolve().parents[1];os.chdir(R);sys.path.insert(0,str(R/'scripts'))
 import fixtures
 from scenarios import rows
-C=R.parent/'concurrency'
+# Historical default borrows concurrency tools; fresh single-suite hosts opt in.
+C=R if os.environ.get('FS_STANDALONE_TOOLS')=='1' else R.parent/'concurrency'
 def commands():
  tools=C/'work/tools'
  return {'nift':[str(C/'work/nift-source/nift'),'adapters/nift.f'],'python':[str(next((R/'work/tools/python').glob('*/bin/python3'))),'adapters/python.py'],'node':[str(tools/'node-v24.21.0-linux-x64/bin/node'),'adapters/js.mjs'],'bun':[str(tools/'bun-linux-x64/bun'),'adapters/js.mjs'],'go':[str(R/'work/go-adapter')]}
